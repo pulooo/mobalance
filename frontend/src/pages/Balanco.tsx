@@ -154,7 +154,9 @@ export default function Balanco() {
   useEffect(() => { load(); }, [modo, mes, ano, semana, semanaAno]);
 
   const chartData = historico.map((b) => ({
-    name: b.semana != null ? `S${b.semana}` : MESES_PT[b.mes!].slice(0, 3),
+    // label vem preenchido pelo backend (ex: "Jan S1", "24/03")
+    // fallback para o formato antigo caso seja chamada directa
+    name: b.label ?? (b.semana != null ? `S${b.semana}` : (MESES_PT[b.mes!] ?? "").slice(0, 3)),
     Vendas: Number(b.total_vendas),
     Custo: Number(b.total_compras),
     Lucro: Number(b.lucro),
@@ -338,12 +340,18 @@ export default function Balanco() {
       {historico.length > 0 && (
         <div className="bg-white rounded-2xl shadow p-6">
           <h3 className="text-base font-semibold text-gray-700 mb-4">
-            {modo === "mensal" ? "Últimos 3 meses" : "Últimas 4 semanas"}
+            {modo === "mensal" ? "Últimos 3 meses — por semana" : "Esta semana — por dia"}
           </h3>
-          <ResponsiveContainer width="100%" height={220}>
-            <BarChart data={chartData} margin={{ top: 5, right: 10, left: 0, bottom: 5 }}>
+          <ResponsiveContainer width="100%" height={240}>
+            <BarChart data={chartData} margin={{ top: 5, right: 10, left: 0, bottom: 20 }}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
-              <XAxis dataKey="name" tick={{ fontSize: 12 }} />
+              <XAxis
+                dataKey="name"
+                tick={{ fontSize: modo === "mensal" ? 10 : 12 }}
+                angle={modo === "mensal" ? -35 : 0}
+                textAnchor={modo === "mensal" ? "end" : "middle"}
+                interval={0}
+              />
               <YAxis tick={{ fontSize: 12 }} tickFormatter={(v) => `€${v}`} />
               <Tooltip
                 formatter={(value: number) => [`€${value.toFixed(2)}`]}

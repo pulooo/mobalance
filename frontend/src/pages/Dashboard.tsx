@@ -14,7 +14,7 @@ export default function Dashboard() {
   const [balance, setBalance] = useState<MonthBalance | null>(null);
 
   useEffect(() => {
-    getBalance(now.getMonth() + 1, now.getFullYear())
+    getBalance({ periodo: "mensal", mes: now.getMonth() + 1, ano: now.getFullYear() })
       .then(setBalance)
       .catch(() => null);
   }, []);

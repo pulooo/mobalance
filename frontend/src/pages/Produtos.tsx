@@ -459,7 +459,7 @@ function AnaliseSalesSection() {
               contentStyle={{ borderRadius: 8, fontSize: 13 }}
             />
             <Bar dataKey="quantidade" radius={[0, 4, 4, 0]}>
-              {chartData.map((entry, i) => (
+              {chartData.map((entry) => (
                 <Cell
                   key={entry.nome}
                   fill={entry.quantidade === maxQty ? "#15803d" : "#86efac"}

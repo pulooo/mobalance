@@ -6,6 +6,7 @@ export interface PeriodBalance {
   semana?: number;
   data_inicio?: string;
   data_fim?: string;
+  label?: string;          // ex: "Jan S1", "24/03"
   total_vendas: number;
   total_compras: number;
   lucro: number;
