@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(.venv/Scripts/python -m alembic stamp head)",
+      "Bash(.venv/Scripts/python -m alembic current)",
+      "Bash(.venv/Scripts/python -c \"from main import app; print\\(''OK''\\)\")",
+      "Bash(.venv/Scripts/pip show:*)",
+      "Bash(taskkill //F //IM python.exe)",
+      "Bash(.venv/Scripts/python -c \"from main import app; print\\(''backend OK''\\)\")",
+      "Bash(.venv/Scripts/python -c \":*)",
+      "Bash(.venv/Scripts/python -m alembic upgrade head)"
+    ]
+  }
+}

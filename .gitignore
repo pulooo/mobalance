@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+dist/
+build/
+*.egg
+
+# Ambiente
+.env
+!.env.example
+
+# Node
+node_modules/
+dist/
+.next/
+
+# Playwright
+/playwright-report/
+/test-results/
+
+# Base de dados local
+*.sql.dump
+scraper/data/*.json
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
